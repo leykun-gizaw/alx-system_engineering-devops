@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# prints "Best School" 10 times STDOUT
+TEXT="Best School"
+COUNT=0
+while [ $COUNT -lt 10 ]; do
+	echo "$TEXT"
+	COUNT=$((COUNT + 1))
+done
