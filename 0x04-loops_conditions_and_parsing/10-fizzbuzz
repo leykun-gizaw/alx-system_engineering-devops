@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# prints 1 to 100 playing the fizzbuzz game
+for ((i = 1; i <= 100; i++)); do
+	OUTPUT=$((i))
+	if [ $((i % 3)) -eq 0 ];
+	then
+		OUTPUT="Fizz"
+	fi
+	if [ $((i % 5)) -eq 0 ];
+	then
+		if [ $OUTPUT = "Fizz" ];
+		then
+			OUTPUT+="Buzz"
+		else
+			OUTPUT="Buzz"
+		fi
+	fi
+	echo "$OUTPUT"
+done
