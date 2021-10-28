@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# prints 3 strings after 3 letters
+TEXT1="bad luck from China"
+TEXT2="bad luck from Japan"
+TEXT3="bad luck from Italy"
+COUNT=1
+
+while [ $COUNT -le 20 ]; do
+	echo "$COUNT"
+
+	case "$COUNT" in
+		4) echo "$TEXT1";;
+		9) echo "$TEXT2";;
+		17) echo "$TEXT3";;
+	esac
+
+	COUNT=$((COUNT + 1))
+done
