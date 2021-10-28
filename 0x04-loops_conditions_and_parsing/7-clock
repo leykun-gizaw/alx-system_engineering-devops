@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# prints 12 hours with minutes precision
+HOUR_COUNT=0
+MINUTE_COUNT=1
+
+while [ $HOUR_COUNT -le 12 ]; do
+	echo "Hour: $HOUR_COUNT"
+	while [ $MINUTE_COUNT -le 59 ]; do
+		echo "$MINUTE_COUNT"
+		MINUTE_COUNT=$((MINUTE_COUNT + 1))
+	done
+	MINUTE_COUNT=1
+	HOUR_COUNT=$((HOUR_COUNT + 1))
+done
