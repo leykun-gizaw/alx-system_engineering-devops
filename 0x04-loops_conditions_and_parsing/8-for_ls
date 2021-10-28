@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# lists files & dirs but modifying their names with CUT
+
+for FILE in *; do
+	find "$FILE" | cut -d "-" -f 2 | cat
+done
