@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # indefinite printer of text and responder to 3 signals
 exit_on_SIGTERM () {
-	echo "I hage the kill command"
+	echo "I hate the kill command"
 	sudo rm /var/run/myscript.pid
 	exit
 }
