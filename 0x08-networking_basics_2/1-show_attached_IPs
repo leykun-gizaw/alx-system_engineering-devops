@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Show attached ip addresses of local machine
+ifconfig | grep -w "inet" | cut -d " " -f 10
