@@ -1,0 +1,38 @@
+Project: - Web Infrastructure Design
+Project repository: - alx-system_engineering-devops
+Project directory: - 0x09-web_infrastructure_design
+
+Task 0:
+
+Specifics about this infrastructure:
+
+    1. What is a server?
+       A server is a specialized computer used to serve contents requested by clients via network protocols. It will use services (programs running within it) to respond to client requests. It will also be able to communicate with other servers (like databases) to provide the requested content.
+
+    2. What is the role of the domain name?
+       Since foobar.com is easier to remember than 8.8.8.8 (which might not be this easy in real life), the domain name¿s role is to provide easy access of servers without having to memorize long and ambiguous numbers. This is done by DNS.
+
+    3. What type of DNS record www is in www.foobar.com?
+       www will be a C record because it is a subdomain of foobar.com and in order to point www to our root domain we use C records.
+
+    4. What is the role of the web server?
+       The web server will respond to requests coming from either HTTP (80) or HTTPS (port 443) at a time and provide the requester with a static HTML file from www.foobar.com or any of its subdomains depending on the request.
+
+    5. What is the role of the application server?
+       The application server will work in tandem with the web server to fulfill the request. If the web server is requested a dynamic content or if www.foobar.com is inherently dynamic in nature, then the web server will forward the job to the application server with the required parameters the application server needs, and after the application server finished creating the HTML content it will provide it to the web server, in which case the web server will respond to the request with that dynamically generated HTML content appended at the bottom of the response headers.
+
+    6. What is the role of the database?
+       The database will provide the application server with data it requires to generate the dynamic HTML content. For example, if www.foobar.com is an e-commerce site and if the business logic requires that the home page show all available commodities categorized by type, then the application server will query the database to provide it with all available commodities stored, then the application server will worry about categorizing the provided data.
+
+    7. What is the server using to communicate with the computer of the user requesting the website?
+       The server uses either HTTP or HTTPS protocols to communicate with the client over the internet.
+
+Issues With this infrastructure:
+    1. SPOF (Single Point Of Failure)
+       The website has only one application and one web server. If QPS (Queries-Per-Second) increases beyond what either of the servers can handle, it will cause the server to overload and crash in worst case scenarios or have a significant delay in providing content to the end user beyond the point of usability. The single point of failures in this stack are the web server and the application server.
+
+    2. Downtime during maintenance
+       While maintaining or uploading new code with new functionalities, the developers will have to disconnect the application until the upload and testing phases are done. The amount of time for such work might vary but during that time no user will be able to communicate with www.foobar.com.
+
+    3. Can not scale if too much traffic
+       If trafic is increasing by the day, there is no mechanism implemented to account for that without disrupting the existing users from accssing www.foobar.com
