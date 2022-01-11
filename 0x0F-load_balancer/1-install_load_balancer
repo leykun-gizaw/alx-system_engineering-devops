@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Install HAproxy to 1269-lb-01 server
+# Configure HAproxy to send traffic to 1269-web-01 & 1269-web-02
+# Destribute traffic using a roundrobin algo
+# Make sure HAproxy can be managed via an init script
+
+sudo apt update
+sudo apt install haproxy=2.0.\*
+sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+sudo sed -i "$ a\listen bakxy\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\tserver 1269-web-01 34.73.227.49:80 check\n\tserver 1269-web-02 35.173.250.239:80 check" /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
