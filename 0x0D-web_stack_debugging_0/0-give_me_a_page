@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-# Get Apache2 return a custome homepage and restart it
-echo "Hello Holberton" | sudo tee /var/www/html/index.html
+# Get Apache2 to spin up again
 sudo service apache2 start

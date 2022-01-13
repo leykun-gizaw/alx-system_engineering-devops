@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Inquire nameserver for record and ip address
+
+#shellcheck disable=SC2086
+dig_answer () {
+	DOMAIN=$1
+	SUBDOMAIN=$2
+
+	RECORD=$(dig +noall +answer $SUBDOMAIN.$DOMAIN | awk '{ print $4 }')
+	IP=$(dig +noall +answer $SUBDOMAIN.$DOMAIN | awk '{ print $5 }')
+
+	printf "The subdomain $2 is a %s record and points to %s\n" $RECORD $IP
+	return 0
+}
+
+if [ -z $2 ]; then
+	SUB_ARR=("www" "lb-01" "web-01" "web-02")
+
+	for ELM in "${SUB_ARR[@]}"; do
+		dig_answer $1 $ELM
+	done
+else
+	dig_answer $1 $2
+fi
