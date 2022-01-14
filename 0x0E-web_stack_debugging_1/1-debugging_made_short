@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# create symbolic link of default site configuration to sites-enabled
+sudo ln -s -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+sudo service nginx restart
+sudo rm -rf /run/nginx.pid
