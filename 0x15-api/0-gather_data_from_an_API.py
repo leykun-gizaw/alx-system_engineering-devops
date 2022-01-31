@@ -10,7 +10,7 @@ class Fetch:
 
         payload = {"userId": userId}
         userInfo = requests.get(
-            "https://jsonplaceholder.typicode.com/users/{:s}".format(
+            "https://jsonplaceholder.typicode.com/users/{}".format(
                 userId
             )
         ).json()
@@ -36,7 +36,7 @@ class Fetch:
         """
         brief, completed = "", ""
         try:
-            brief = "Employee {:s} is done with tasks ({:d}/{:d}):\n".format(
+            brief = "Employee {} is done with tasks ({}/{}):\n".format(
                 self.name,
                 len(Fetch.__tasks(self.todos)["complete"]),
                 len(self.todos)
@@ -84,7 +84,7 @@ class Fetch:
         """
         brief = ""
         for elem in tasks_list:
-            brief += "\t {:s}\n".format(elem.get("title"))
+            brief += "\t {}\n".format(elem.get("title"))
         return brief
     pass
 
@@ -93,6 +93,9 @@ if __name__ == "__main__":
     import requests
     import sys
 
-    fetch = Fetch(sys.argv[1])
-    for elem in fetch.project_task_one():
-        print(elem, end="")
+    try:
+        fetch = Fetch(sys.argv[1])
+        for elem in fetch.project_task_one():
+            print(elem, end="")
+    except Exception:
+        pass
