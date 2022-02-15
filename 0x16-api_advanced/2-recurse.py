@@ -11,6 +11,10 @@ def recurse(subreddit, after=None, hot_list=[]):
 
     Args:
         subreddit (str): Name of subreddit to query info
+        after (str, optional): value of query string used to traverse
+        paginated json response
+        hot_list (list, optional): A list to populate with titles of all
+        subreddits
 
     Returns:
         None
