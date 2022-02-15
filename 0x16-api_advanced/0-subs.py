@@ -4,22 +4,30 @@ import requests
 
 
 def number_of_subscribers(subreddit):
+    """Request for subreddit subscribers count
+
+    Args:
+        subreddit (str): Name of subreddit to query info
+
+    Returns:
+        Number of members of `subreddit`, 0 if subreddit not found
+    """
     try:
         base_url = (
             "https://www.reddit.com/api/info.json?sr_name={}"
             .format(subreddit)
         )
-        req = requests.get(
+        res = requests.get(
             base_url,
-            headers={"User-agent": 'your bot 0.1'},
+            headers={"User-agent": 'PostmanRuntime/7.28.4'},
             allow_redirects=False
         )
         return (
-            req.json()
+            res.json()
             .get("data")
             .get("children")[0]
             .get("data")
             .get("subscribers")
         )
-    except:
+    except Exception:
         return 0
